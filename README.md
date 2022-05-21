@@ -38,6 +38,25 @@ mqtt:
   will_message:
     topic: nebula_light/mqtt_status
     payload: offline
+  on_message:
+     - topic: nebula_light/rgb/effects/command
+       then:
+         - # ...
+     - topic: nebula_light/rgb/red/command
+       then:
+         - # ...
+     - topic: nebula_light/rgb/green/command
+       then:
+         - # ...
+     - topic: nebula_light/rgb/blue/command
+       then:
+         - # ...
+     - topic: nebula_light/pwm/laser/command
+       then:
+         - # ...
+     - topic: nebula_light/pwm/motor/command
+       then:
+         - # ...
 ota:
 
 light:
