@@ -60,6 +60,11 @@ light:
           name: Random Slow
           transition_length: 10s
           update_interval: 5s
+    on_value:
+      - mqtt.publish:
+          topic: "nebula_light/rgb/effects/state"
+          payload: !lambda |-
+          return to_string(id(rgb_light[effects]).state);
 
   - platform: monochromatic
     name: ${name} Laser
@@ -74,20 +79,45 @@ output:
   - platform: esp8266_pwm
     id: red
     pin: D1
+    on_value:
+      - mqtt.publish:
+          topic: "nebula_light/rgb/red/state"
+          payload: !lambda |-
+          return to_string(id(red).state);
   - platform: esp8266_pwm
     id: green
     pin: D5
+    on_value:
+      - mqtt.publish:
+          topic: "nebula_light/rgb/green/state"
+          payload: !lambda |-
+          return to_string(id(green).state);
   - platform: esp8266_pwm
     id: blue
     pin: D6
+    on_value:
+      - mqtt.publish:
+          topic: "nebula_light/rgb/blue/state"
+          payload: !lambda |-
+          return to_string(id(blue).state);
 
   - platform: esp8266_pwm
     id: laser_pwm
     pin: D7
     frequency: 2000 Hz
+    on_value:
+      - mqtt.publish:
+          topic: "nebula_light/pwm/laser/state"
+          payload: !lambda |-
+          return to_string(id(laser_pwm).state);
   - platform: esp8266_pwm
     id: motor_pwm
     frequency: 8 Hz
     pin: D8
+    on_value:
+      - mqtt.publish:
+          topic: "nebula_light/pwm/motor/state"
+          payload: !lambda |-
+          return to_string(id(motor_pwm).state);
 ```
 
