@@ -2,6 +2,8 @@
 
 Watch the full video tutorial here: https://youtu.be/YwHWbcuztuY
 
+Forked for using MQTT.
+
 
 
 ESPHome Code:
@@ -18,12 +20,24 @@ wifi:
 
 ## Change this for your light's name ##
 substitutions:
-  name: nebula_lounge
+  name: nebula_light
 
 logger:
   logs:
     light: none
-api:
+mqtt:
+  broker: !ip_to_broker
+  port: 1883
+  username: !secret broker username
+  password: !secret broker password
+  client_id: nebula_light
+  discovery: true
+  birth_message:
+    topic: nebula_light/mqtt_status
+    payload: online
+  will_message:
+    topic: nebula_light/mqtt_status
+    payload: offline
 ota:
 
 light:
@@ -76,10 +90,4 @@ output:
     frequency: 8 Hz
     pin: D8
 ```
-
-🎁 Found this useful or want to say 'thanks' and support my efforts...
-
-[![BMC](https://www.buymeacoffee.com/assets/img/custom_images/white_img.png)](https://www.buymeacoffee.com/3ative) **And leave a me a message to let me know.**  ❤
-
-🍺 CHEERS! 👍
 
