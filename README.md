@@ -41,22 +41,22 @@ mqtt:
   on_message:
      - topic: nebula_light/rgb/effects/command
        then:
-         - # ...
+         - rgb_light[effects]: effect
      - topic: nebula_light/rgb/red/command
        then:
-         - # ...
+         - red: red
      - topic: nebula_light/rgb/green/command
        then:
-         - # ...
+         - green: green
      - topic: nebula_light/rgb/blue/command
        then:
-         - # ...
+         - blue: blue
      - topic: nebula_light/pwm/laser/command
        then:
-         - # ...
+         - laser_pwm: laser_pwm
      - topic: nebula_light/pwm/motor/command
        then:
-         - # ...
+         - motor_pwm: motor_pwm
 ota:
 
 light:
